@@ -1,12 +1,14 @@
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
+from gradient_descent import LinearRegression
+import numpy as np
 
 # define helper functions to evaluate
 def rmse(y_true, y_pred):
     return np.sqrt(np.mean((y_pred - y_true)**2))
 
 # load dataset
-X, y = dataset.make_regression(
+X, y = datasets.make_regression(
     n_samples=1000, n_features=1, noise=20, random_state=1
 )
 
@@ -19,4 +21,4 @@ linreg.fit(X_train, y_train)
 
 # make prediction
 predictions = linreg.predict(X_test)
-print(f"RMSE: {rmse(y_test, predicitions)}")
+print(f"RMSE: {rmse(y_test, predictions)}")
