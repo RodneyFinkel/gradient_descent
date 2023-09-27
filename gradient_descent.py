@@ -51,7 +51,7 @@ class LinearRegression:
     
 if __name__ == '__main__':
     
-    import matplotlib.pyplot as pyplot
+    import matplotlib.pyplot as plt 
     from sklearn import datasets
     from sklearn.model_selection import train_test_split
     
@@ -76,3 +76,34 @@ if __name__ == '__main__':
     print(f"RMSE: {rmse(y_test, predictions)}")
     
     
+    # plot results
+    
+    fig, ax = plt.subplots(1,1, figsize=(12,6))
+    
+    ax.scatter(
+        X_train,
+        y_train,
+        s=50,
+        alpha=0.5,
+        label='Train'
+    )    
+    
+    ax.scatter(
+        X_test,
+        y_test,
+        c='orange',
+        s=50,
+        alpha=0.5,
+        label='Test'
+    )
+    
+    ax.plot(
+        X, linreg.predict(X),
+        c='black', lw=2, alpha=0.8, label='Prediction'
+    )
+    
+    for spine in ['top', 'right']:
+        ax.spines[spine].set_visible(False)
+        
+    plt.legend()
+    plt.show()
