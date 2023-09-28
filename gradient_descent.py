@@ -2,7 +2,8 @@ import numpy as np
 
 class LinearRegression:
     def __init__(self, learning_rate = 1e-3, n_iters = 1000):
-        # init parameters
+        # lr is the step size at which the model's parameters are updated during training
+        # n_iters is the number of times the gradient descent algorithm iterates over the data set
         self.lr = learning_rate
         self.n_iters = n_iters
         self.weights = None
@@ -20,6 +21,7 @@ class LinearRegression:
     def _get_prediction(self, X):
         return np.dot(X, self.weights) + self.bias
     
+    # analogous to taking partial derivatives of the loss function w.r.t weights and bias
     def _get_gradients(self, X, y, y_pred):
         # get distance between y_pred and y_true
         error = y_pred - y
@@ -29,12 +31,12 @@ class LinearRegression:
         return dw, db
     
     def fit(self, X, y):
-        # get number of samples and features
+        # get number of samples and features by unpacking X
         self.n_samples, self.n_features = X.shape
         # init weights and bias
         self._init_params()
         
-    # perform gradient descent for n iterations (essentially this is the gradient descent algorithm)
+        # perform gradient descent for n iterations (essentially this is the gradient descent algorithm)
         for i in range(self.n_iters):
             # get y prediction
             y_pred = self._get_prediction(X)
